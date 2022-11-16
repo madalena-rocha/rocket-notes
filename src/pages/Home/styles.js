@@ -54,6 +54,8 @@ export const Search = styled.div`
 
 export const Content = styled.div`
   grid-area: content;
+  padding: 0 64px;
+  overflow-y: auto; // habilitar o scroll somente quando houver overflow de forma automática
 `;
 
 export const NewNote = styled.button`
