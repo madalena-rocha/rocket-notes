@@ -52,7 +52,7 @@ export function Profile() {
 				/>
 
 				<Input 
-					placeholder="Senha atual"
+					placeholder="Nova Senha"
 					type="password"
 					icon={FiLock}
 				/>

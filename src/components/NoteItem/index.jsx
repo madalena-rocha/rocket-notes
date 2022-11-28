@@ -3,7 +3,7 @@ import { FiPlus, FiX } from 'react-icons/fi';
 import { Container } from './styles';
 
 export function NoteItem({ isNew, value, onClick, ...rest }) {
-  // propriedade isNew para saber se é para adicionar um novo item
+  	// propriedade isNew para saber se é para adicionar um novo item
 	return (
 		<Container isNew={isNew}>
 			<input 

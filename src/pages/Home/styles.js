@@ -18,7 +18,7 @@ export const Container = styled.div`
 `;
 
 export const Brand = styled.div`
-  grid-area: brand;
+  	grid-area: brand;
 	
 	display: flex;
 	justify-content: center;
@@ -37,7 +37,7 @@ export const Brand = styled.div`
 `;
 
 export const Menu = styled.ul`
-  grid-area: menu;
+  	grid-area: menu;
 	background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
 
 	padding-top: 64px;
@@ -49,18 +49,18 @@ export const Menu = styled.ul`
 `;
 
 export const Search = styled.div`
-  grid-area: search;
-  padding: 64px 64px 0;
+	grid-area: search;
+	padding: 64px 64px 0;
 `;
 
 export const Content = styled.div`
-  grid-area: content;
-  padding: 0 64px;
-  overflow-y: auto; // habilitar o scroll somente quando houver overflow de forma automática
+  	grid-area: content;
+  	padding: 0 64px;
+  	overflow-y: auto; // habilitar o scroll somente quando houver overflow de forma automática
 `;
 
 export const NewNote = styled(Link)`
-  grid-area: newnote;
+  	grid-area: newnote;
 
 	background-color: ${({ theme }) => theme.COLORS.ORANGE};
 	color: ${({ theme }) => theme.COLORS.BACKGROUND_900};

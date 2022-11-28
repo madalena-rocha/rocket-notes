@@ -7,7 +7,7 @@ import { Button } from '../../components/Button';
 import { Container, Form, Background } from './styles';
 
 export function SignUp(){
-  return (
+  	return (
 		<Container>
 			<Background />
 
