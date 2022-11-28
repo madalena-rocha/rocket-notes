@@ -7,8 +7,8 @@ import { Section } from "../../components/Section";
 import { ButtonText } from "../../components/ButtonText";
 
 export function Details() {
-  	return (
-		<Container>
+  return (
+    <Container>
 			<Header />
 
 			<main>
@@ -41,6 +41,6 @@ export function Details() {
 					<Button title="Voltar" />				
 				</Content>
 			</main>
-		</Container>
-  	); // o children não é passado como uma propriedade comum, sendo passado dentro do <Section></Section>
+    </Container>
+  ); // o children não é passado como uma propriedade comum, sendo passado dentro do <Section></Section>
 }

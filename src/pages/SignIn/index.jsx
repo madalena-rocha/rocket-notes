@@ -7,7 +7,7 @@ import { Button } from '../../components/Button';
 import { Container, Form, Background } from './styles';
 
 export function SignIn(){
-  	return (
+  return (
 		<Container>
 			<Form>
 				<h1>Rocket Notes</h1>

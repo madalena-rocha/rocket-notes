@@ -10,8 +10,8 @@ import { Input } from '../../components/Input';
 import { Container, Form } from './styles';
 
 export function New() {
-  	return (
-    	<Container>
+  return (
+    <Container>
 			<Header />
 
 			<main>
@@ -41,5 +41,5 @@ export function New() {
 				</Form>
 			</main>
 		</Container>   
-  	);
+  );
 }

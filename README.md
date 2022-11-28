@@ -15,8 +15,7 @@
 
 ## :file_folder: Projeto
 
-Frontend do projeto RocketNotes. <br>
-Aplicação para salvar e gerenciar seus links úteis.
+Frontend do projeto RocketNotes.
 
 ## :page_with_curl: Páginas
 
