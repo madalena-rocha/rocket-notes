@@ -6,7 +6,7 @@ export function Button({ title, loading = false, ...rest }) {
   return(
     <Container 
 			type="button"
-			disables={loading} // se o loading for verdadeiro vai desabilitar
+			disabled={loading} // se o loading for verdadeiro vai desabilitar
 			{...rest}
 		>
       { loading ? 'Carregando...' : title }
