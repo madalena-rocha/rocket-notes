@@ -12,6 +12,19 @@ import { ButtonText } from '../../components/ButtonText';
 
 export function Home() {
   const [tags, setTags] = useState([]);
+  const [tagsSelected, setTagsSelected] = useState([]); // estado para guardar qual tag está selecionada
+
+  function handleTagSelected(tagName) { // recebe como parâmetro o nome da tag selecionada no momento
+    const alreadySelected = tagsSelected.includes(tagName); // saber se a tag já está selecionada
+    
+    if (alreadySelected) {
+      const filteredTags = tagsSelected.filter(tag => tag !== tagName);
+      // retornar todas as tags diferentes da tag desmarcada
+      setTagsSelected(filteredTags);
+    } else { // se não tiver selecionado, selecione
+      setTagsSelected(prevState => [...prevState, tagName]); // prevState para manter as tags selecionadas anteriormente
+    }
+  }
 
   useEffect(() => {
     async function fetchTags() { // o useEffect não aceita async, sendo necessário criar uma função para utilizá-lo
@@ -34,7 +47,8 @@ export function Home() {
         <li>
           <ButtonText 
             title="Todos" 
-            isActive 
+            onClick={() => handleTagSelected("all")}
+            isActive={tagsSelected.length === 0} // o tamanho verifica se há algum elemento dentro do array
           />
         </li>
 
@@ -43,6 +57,8 @@ export function Home() {
             <li key={String(tag.id)}>
               <ButtonText 
                 title={tag.name} 
+                onClick={() => handleTagSelected(tag.name)}
+                isActive={tagsSelected.includes(tag.name)} // verificar se a tag existe dentro do array
               />
             </li>
           ))
