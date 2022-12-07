@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FiPlus, FiSearch } from 'react-icons/fi'; // importando ícone de adicionar
 import { Container, Brand, Menu, Search, Content, NewNote } from './styles';
 
@@ -16,6 +17,8 @@ export function Home() {
   const [tagsSelected, setTagsSelected] = useState([]); // estado para guardar qual tag está selecionada
   const [notes, setNotes] = useState([]);
 
+  const navigate = useNavigate();
+
   function handleTagSelected(tagName) { // recebe como parâmetro o nome da tag selecionada no momento
     if (tagName === "all") {
       return setTagsSelected([]); // ao clicar em todos, desmarcar todas as tags
@@ -30,6 +33,11 @@ export function Home() {
     } else { // se não tiver selecionado, selecione
       setTagsSelected(prevState => [...prevState, tagName]); // prevState para manter as tags selecionadas anteriormente
     }
+  }
+
+  function handleDetails(id) {
+    // quando clicar numa nota, abrir a página para exibir os detalhes da nota
+    navigate(`/details/${id}`);
   }
 
   useEffect(() => {
@@ -98,6 +106,7 @@ export function Home() {
               <Note 
                 key={String(note.id)}
                 data={note} 
+                onClick={() => handleDetails(note.id)}
               />
             ))
           }
