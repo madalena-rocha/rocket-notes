@@ -1,12 +1,15 @@
 import { BrowserRouter } from 'react-router-dom';
+import { useAuth } from '../hooks/auth';
 
 import { AppRoutes } from './app.routes';
 import { AuthRoutes } from './auth.routes';
 
 export function Routes() {
-  return (
+	const { user } = useAuth();
+
+  	return (
 		<BrowserRouter>
-			<AuthRoutes />
+			{user ? <AppRoutes /> : <AuthRoutes />}
 		</BrowserRouter>
-	)
+	) // Se o usuário estiver conectado, direcionar para AppRoutes, que são as rotas da aplicação, caso contrário, permanecer em AuthRoutes
 }
