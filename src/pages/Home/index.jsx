@@ -17,6 +17,10 @@ export function Home() {
   const [notes, setNotes] = useState([]);
 
   function handleTagSelected(tagName) { // recebe como parâmetro o nome da tag selecionada no momento
+    if (tagName === "all") {
+      return setTagsSelected([]); // ao clicar em todos, desmarcar todas as tags
+    }
+    
     const alreadySelected = tagsSelected.includes(tagName); // saber se a tag já está selecionada
     
     if (alreadySelected) {
