@@ -20,6 +20,15 @@ export function Details() {
 		navigate("/");
 	}
 
+	async function handleRemove() {
+		const confirm = window.confirm("Deseja realmente remover a nota?");
+
+		if (confirm) {
+			await api.delete(`/notes/${params.id}`); // pegando o id do usuário pelo parâmetro da rota
+			navigate("/");
+		}
+	}
+
 	useEffect(() => { // buscar pelas informações da nota
 		async function fetchNote() {
 			const response = await api.get(`/notes/${params.id}`);
@@ -36,7 +45,10 @@ export function Details() {
 				data && // mostrar o main somente se houver conteúdo
 				<main>
 					<Content>
-						<ButtonText title="Excluir nota" />
+						<ButtonText 
+							title="Excluir nota" 
+							onClick={handleRemove}
+						/>
 
 						<h1>{data.title}</h1>
 
