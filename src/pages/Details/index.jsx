@@ -17,7 +17,9 @@ export function Details() {
 	const navigate = useNavigate();
 
 	function handleBack() {
-		navigate("/");
+		// navigate("/") funciona mas vai empilhando no histórico de navegação, 
+		// pois ao invés de retornar para Home, avança para Home, acrescentando uma camada ao histórico de navegação
+		navigate(-1); // volta para a rota anterior do histórico de navegação
 	}
 
 	async function handleRemove() {
@@ -25,7 +27,7 @@ export function Details() {
 
 		if (confirm) {
 			await api.delete(`/notes/${params.id}`); // pegando o id do usuário pelo parâmetro da rota
-			navigate("/");
+			navigate(-1);
 		}
 	}
 
