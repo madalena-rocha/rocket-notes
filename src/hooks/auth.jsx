@@ -7,6 +7,15 @@ export const AuthContext = createContext({}); // entre () valor padrão do conte
 function AuthProvider({ children }) {
     const [data, setData] = useState({});
 
+    function signOut() {
+        // remover do local storage as informações armazenadas
+        localStorage.removeItem("@rocketnotes:token");
+        localStorage.removeItem("@rocketnotes:user");
+
+        // retornar o estado como um objeto vazio, refletindo nas rotas e levando para o AuthRoutes
+        setData({});
+    }
+
     async function signIn({ email, password }) { // função de autenticação
         // email e senha entre {} para poder passar essas informações independente da ordem
         try {
@@ -52,7 +61,12 @@ function AuthProvider({ children }) {
     // vetor de dependências vazio, será carregado uma vez após a renderização do componente
 
     return (
-        <AuthContext.Provider value={{ signIn, user: data.user }}>
+        <AuthContext.Provider value={{ 
+            signIn, 
+            signOut,
+            user: data.user, 
+        }}
+        >
             {children}
         </AuthContext.Provider>
     ) // children para inserir todas as rotas da aplicação

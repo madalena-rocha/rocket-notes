@@ -1,13 +1,17 @@
 import { RiShutDownLine } from 'react-icons/ri'; // importando botão de ligar
+import { useAuth } from '../../hooks/auth';
+
 import { Container, Profile, Logout } from './styles';
 
 export function Header() {
-  return (
-    <Container>
+	const { signOut } = useAuth();
+
+  	return (
+    	<Container>
 			<Profile to="/profile">
 				<img 
 					src="https://github.com/madalena-rocha.png" 
-					alt="Foto do usuário" 
+					alt="Foto do usuário"
 				/>
 
 				<div>
@@ -16,9 +20,9 @@ export function Header() {
 				</div>
 			</Profile>
 
-			<Logout>
+			<Logout onClick={signOut}>
 				<RiShutDownLine />
 			</Logout>
-    </Container>
+    	</Container>
   );
 }
