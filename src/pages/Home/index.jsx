@@ -11,8 +11,10 @@ import { Section } from '../../components/Section';
 import { ButtonText } from '../../components/ButtonText';
 
 export function Home() {
+  const [search, setSearch] = useState(""); // estado para guardar o conteúdo da caixa de pesquisa
   const [tags, setTags] = useState([]);
   const [tagsSelected, setTagsSelected] = useState([]); // estado para guardar qual tag está selecionada
+  const [notes, setNotes] = useState([]);
 
   function handleTagSelected(tagName) { // recebe como parâmetro o nome da tag selecionada no momento
     const alreadySelected = tagsSelected.includes(tagName); // saber se a tag já está selecionada
@@ -34,6 +36,17 @@ export function Home() {
 
     fetchTags();
   }, []);
+
+  useEffect(() => {
+    async function fetchNotes() {
+      const response = await api.get(`/notes?title=${search}&tags=${tagsSelected}`);
+      // enviando para a rota /notes através de query o title passando o conteúdo dentro do search e as tags passando o conteúdo dentro de tagsSelected
+      setNotes(response.data);
+    }
+
+    fetchNotes();
+  }, [tagsSelected, search]);
+  // quando mudar o conteúdo do tagsSelected ou do search, executa novamente o useEffect
 
   return (
     <Container>
@@ -66,19 +79,23 @@ export function Home() {
       </Menu>
 
       <Search>
-        <Input placeholder="Pesquisar pelo título" icon={FiSearch} />
+        <Input 
+          placeholder="Pesquisar pelo título" 
+          icon={FiSearch} 
+          onChange={() => setSearch(e.target.value)}
+        />
       </Search>
 
       <Content>
         <Section title="Minhas notas">
-          <Note data={{
-            title: 'React',
-            tags: [
-              {id: '1', name: 'react'},
-              {id: '2', name: 'rocketseat'}
-            ]
-          }} 
-          />
+          {
+            notes.map(note => (
+              <Note 
+                key={String(note.id)}
+                data={note} 
+              />
+            ))
+          }
         </Section>
       </Content>
 
