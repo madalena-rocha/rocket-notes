@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/auth';
 
+import { api } from '../../services/api';
+import avatarPlaceholder from '../../assets/avatar_placeholder.svg';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 
@@ -18,6 +20,12 @@ export function Profile() {
 	const [passwordOld, setPasswordOld] = useState();
 	const [passwordNew, setPasswordNew] = useState();
 
+	const avatarURL = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder;
+	// verificar se o usuário tem um avatar, se sim, mostrar a url para buscar a imagem no back-end, caso contrário, exibir o avatarPlaceholder
+	
+	const [avatar, setAvatar] = useState(avatarURL); // se o usuário já tiver um avatar, colocá-lo aqui
+	const [avatarFile, setAvatarFile] = useState(null); // carregar a nova imagem selecionada pelo usuário
+
 	async function handleUpdate() {
 		const user = {
 			name,
@@ -26,7 +34,16 @@ export function Profile() {
 			old_password: passwordOld,
 		}
 
-		await updateProfile({ user });
+		await updateProfile({ user, avatarFile });
+	}
+
+	function handleChangeAvatar(event) {
+		const file = event.target.files[0]; // pegar uma única foto selecionada pelo usuário
+		setAvatarFile(file);
+
+		// toda vez que o usuário mudar de avatar, gerar uma url para atualizar o estado avatar, que exibe o avatar 
+		const imagePreview = URL.createObjectURL(file);
+		setAvatar(imagePreview);
 	}
 
 	return (
@@ -40,7 +57,7 @@ export function Profile() {
 			<Form>
 				<Avatar>
 					<img 
-						src="https://github.com/madalena-rocha.png"
+						src={avatar}
 						alt="Foto do usuário"
 					/>
 
@@ -51,6 +68,7 @@ export function Profile() {
 							// input invisível utilizado somente para abrir a janela de carregar imagem
 							id="avatar"
 							type="file"
+							onChange={handleChangeAvatar}
 						/>
 					</label>
 				</Avatar>

@@ -16,8 +16,19 @@ function AuthProvider({ children }) {
         setData({});
     }
 
-    async function updateProfile({ user }) {
+    async function updateProfile({ user, avatarFile }) {
         try {
+            if (avatarFile) {
+                const fileUploadForm = new FormData(); // enviar como um arquivo
+                // o arquivo, no back-end está esperando um campo chamado avatar
+                fileUploadForm.append("avatar", avatarFile); // adicionando ao formulário o campo avatar e passando o avatarFile
+            
+                const response = await api.patch("/users/avatar", fileUploadForm);
+                // fazendo uma requisição para o users/avatar mandando o formulário
+                user.avatar = response.data.avatar;
+                // pegar o user que chega em updateProfile e inserir o avatar
+            }
+
             await api.put("/users", user);
             localStorage.setItem("@rocketnotes:user", JSON.stringify(user));
             // setItem serve tanto para colocar a chave e o conteúdo no storage caso ele não exista, 
