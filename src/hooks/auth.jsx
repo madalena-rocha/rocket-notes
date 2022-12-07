@@ -16,6 +16,24 @@ function AuthProvider({ children }) {
         setData({});
     }
 
+    async function updateProfile({ user }) {
+        try {
+            await api.put("/users", user);
+            localStorage.setItem("@rocketnotes:user", JSON.stringify(user));
+            // setItem serve tanto para colocar a chave e o conteúdo no storage caso ele não exista, 
+            // e se der um setItem numa chave já existente substitui o conteúdo
+        
+            setData({ user, token: data.token });
+            alert("Perfil atualizado!");
+        } catch (error) {
+            if (error.response) {
+                alert(error.response.data.message);
+            } else {
+                alert("Não foi possível atualizar o perfil.");
+            }
+        }
+    }
+
     async function signIn({ email, password }) { // função de autenticação
         // email e senha entre {} para poder passar essas informações independente da ordem
         try {
@@ -64,6 +82,7 @@ function AuthProvider({ children }) {
         <AuthContext.Provider value={{ 
             signIn, 
             signOut,
+            updateProfile,
             user: data.user, 
         }}
         >
