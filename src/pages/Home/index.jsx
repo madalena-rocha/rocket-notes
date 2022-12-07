@@ -86,7 +86,8 @@ export function Home() {
         <Input 
           placeholder="Pesquisar pelo título" 
           icon={FiSearch} 
-          onChange={() => setSearch(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
+          // guarda na variável e o conteúdo da caixa de pesquisa e transferindo para o estado
         />
       </Search>
 
