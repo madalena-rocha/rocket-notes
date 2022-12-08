@@ -3,5 +3,5 @@
 import axios from "axios"; // para trabalhar com requisições HTTP
 
 export const api = axios.create({
-    baseURL: "http://localhost:3333"
+    baseURL: "https://rocket-notes-api.onrender.com"
 });
