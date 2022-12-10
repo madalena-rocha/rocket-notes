@@ -16,6 +16,15 @@ export const Container = styled.div`
 		overflow-y: scroll;
 		padding: 64px 0;
 	}
+
+	> main::-webkit-scrollbar {
+		width: 8px;
+	}
+	
+	> main::-webkit-scrollbar-thumb {
+		background-color: ${({ theme }) => theme.COLORS.ORANGE};
+		border-radius: 8px;
+	}
 `;
 
 export const Links = styled.ul`

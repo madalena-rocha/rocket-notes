@@ -57,6 +57,15 @@ export const Content = styled.div`
   grid-area: content;
   padding: 0 64px;
   overflow-y: auto; // habilitar o scroll somente quando houver overflow de forma automática
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.COLORS.ORANGE};
+    border-radius: 8px;
+  }
 `;
 
 export const NewNote = styled(Link)`

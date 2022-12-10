@@ -15,6 +15,15 @@ export const Container = styled.div`
 		overflow-y: auto;
 	}
 
+	> main::-webkit-scrollbar {
+		width: 8px;
+	}
+
+	> main::-webkit-scrollbar-thumb {
+		background-color: ${({ theme }) => theme.COLORS.ORANGE};
+		border-radius: 8px;
+	}
+
 	.tags {
 		display: flex;
 		justify-content: space-between;
