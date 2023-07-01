@@ -26,6 +26,8 @@ export function Profile() {
 	const [avatar, setAvatar] = useState(avatarURL); // se o usuário já tiver um avatar, colocá-lo aqui
 	const [avatarFile, setAvatarFile] = useState(null); // carregar a nova imagem selecionada pelo usuário
 
+	const [loading, setLoading] = useState(false);
+
 	const navigate = useNavigate();
 
 	function handleBack() {
@@ -33,17 +35,30 @@ export function Profile() {
 	}
 
 	async function handleUpdate() {
-		const updated = {
-			name,
-			email, 
-			password: passwordNew,
-			old_password: passwordOld,
+		setLoading(true);
+
+    try {
+			const updated = {
+				name,
+				email, 
+				password: passwordNew,
+				old_password: passwordOld,
+			}
+
+			const userUpdated = Object.assign(user, updated);
+			// juntar o que já tem, no caso o avatar, com os dados atualizados
+
+			await updateProfile({ user: userUpdated, avatarFile });
+		} catch (error) {
+			if (error.response) {
+				alert(error.response.data.message);
+			} else {
+				alert('Não foi possível atualizar o perfil.');
+				console.log('Erro ao atualizar o perfil:', error);
+			}
+		} finally {
+			setLoading(false);
 		}
-
-		const userUpdated = Object.assign(user, updated);
-		// juntar o que já tem, no caso o avatar, com os dados atualizados
-
-		await updateProfile({ user: userUpdated, avatarFile });
 	}
 
 	function handleChangeAvatar(event) {
@@ -112,7 +127,7 @@ export function Profile() {
 					onChange={e => setPasswordNew(e.target.value)}
 				/>
 
-				<Button title="Salvar" onClick={handleUpdate} />
+				<Button title="Salvar" onClick={handleUpdate} loading={loading} />
 			</Form>
 		</Container>
 	)

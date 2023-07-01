@@ -12,6 +12,7 @@ import { ButtonText } from "../../components/ButtonText";
 
 export function Details() {
 	const [data, setData] = useState(null);
+	const [loading, setLoading] = useState(false);
 
 	const params = useParams();
 	const navigate = useNavigate();
@@ -26,8 +27,21 @@ export function Details() {
 		const confirm = window.confirm("Deseja realmente remover a nota?");
 
 		if (confirm) {
-			await api.delete(`/notes/${params.id}`); // pegando o id do usuário pelo parâmetro da rota
-			navigate(-1);
+			setLoading(true);
+
+			try {
+				await api.delete(`/notes/${params.id}`); // pegando o id do usuário pelo parâmetro da rota
+				navigate(-1);
+			} catch (error) {
+        if (error.response) {
+          alert(error.response.data.message);
+        } else {
+          alert('Não foi possível remover a nota.');
+          console.log('Erro ao remover a nota:', error);
+        }
+      } finally {
+        setLoading(false);
+      }
 		}
 	}
 
@@ -50,6 +64,7 @@ export function Details() {
 						<ButtonText 
 							title="Excluir nota" 
 							onClick={handleRemove}
+							loading={loading}
 						/>
 
 						<h1>{data.title}</h1>

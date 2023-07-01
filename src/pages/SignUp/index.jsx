@@ -17,6 +17,7 @@ export function SignUp(){
 	// no vetor [] o useState entrega o estado e a função para atualizar o estado
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [loading, setLoading] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -25,6 +26,8 @@ export function SignUp(){
 			// garantir que nome, e-mail e senha foram preenchidos pelo usuário antes de prosseguir o cadastro
 			return alert("Preencha todos os campos!");
 		}
+
+		setLoading(true);
 
 		api.post("/users", { name, email, password })
 			.then(() => {
@@ -42,6 +45,7 @@ export function SignUp(){
 					alert("Não foi possível cadastrar");
 				}
 			})
+			.finally(() => setLoading(false));
 	}
 	
 	return (
@@ -77,7 +81,7 @@ export function SignUp(){
 					// capturar o evento através da variável e transferir para a função que atualiza o estado o que tem dentro do e
 				/>
 
-				<Button title="Cadastrar" onClick={handleSignUp} />
+				<Button title="Cadastrar" onClick={handleSignUp} loading={loading} />
 
 				<Link to="/">
 					Voltar para o login

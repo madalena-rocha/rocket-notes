@@ -24,6 +24,8 @@ export function New() {
 	const [tags, setTags] = useState([]);
 	const [newTag, setNewTag] = useState("");
 
+	const [loading, setLoading] = useState(false);
+
 	const navigate = useNavigate();
 
 	function handleBack() {
@@ -55,27 +57,40 @@ export function New() {
 	}
 
 	async function handleNewNote() {
-		if (!title) {
-			return alert("Digite o título da nota");
-		}
-		
-		if (newLink) {
-			return alert("Você deixou um link no campo para adicionar, mas não clicou em adicionar. Clique para adicionar ou deixe o campo vazio.");
-		}
-		
-		if (newTag) {
-			return alert("Você deixou uma tag no campo para adicionar, mas não clicou em adicionar. Clique para adicionar ou deixe o campo vazio.");
-		}
+		setLoading(true);
 
-		await api.post("/notes", {
-			title,
-			description,
-			tags,
-			links
-		});
+    try {
+			if (!title) {
+				return alert("Digite o título da nota");
+			}
+			
+			if (newLink) {
+				return alert("Você deixou um link no campo para adicionar, mas não clicou em adicionar. Clique para adicionar ou deixe o campo vazio.");
+			}
+			
+			if (newTag) {
+				return alert("Você deixou uma tag no campo para adicionar, mas não clicou em adicionar. Clique para adicionar ou deixe o campo vazio.");
+			}
 
-		alert("Nota criada com sucesso!");
-		navigate(-1);
+			await api.post("/notes", {
+				title,
+				description,
+				tags,
+				links
+			});
+
+			alert("Nota criada com sucesso!");
+			navigate(-1);
+		} catch (error) {
+			if (error.response) {
+				alert(error.response.data.message);
+			} else {
+				alert('Não foi possível criar a nota.');
+				console.log('Erro ao criar a nota:', error);
+			}
+		} finally {
+			setLoading(false);
+		}
 	}
 
   	return (
@@ -148,6 +163,7 @@ export function New() {
 					<Button 
 						title="Salvar" 
 						onClick={handleNewNote}
+						loading={loading}
 					/>
 				</Form>
 			</main>
