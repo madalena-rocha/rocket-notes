@@ -1,9 +1,9 @@
-import { Container } from './styles';
+import { Container } from "./styles";
 
 export function Tag({ title, ...rest }) {
   return (
-		<Container {...rest}>
-			{title}
-		</Container>
-	); // ...rest para incluir a Tag key
+    <Container {...rest}>
+      {title}
+    </Container>
+  ); // ...rest para incluir a Tag key
 }

@@ -1,51 +1,50 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
-	height: 100vh;
+  height: 100vh;
 
-	display: grid;
-	grid-template-rows: 105px auto;
-	grid-template-areas:
-	"header"
-	"content";
+  display: grid;
+  grid-template-rows: 105px auto;
+  grid-template-areas:
+    "header"
+    "content";
 
-	> main {
-		grid-area: content;
-		overflow-y: auto;
-	}
+  > main {
+    grid-area: content;
+    overflow-y: auto;
+  }
 
-	> main::-webkit-scrollbar {
-		width: 8px;
-	}
+  > main::-webkit-scrollbar {
+    width: 8px;
+  }
 
-	> main::-webkit-scrollbar-thumb {
-		background-color: ${({ theme }) => theme.COLORS.ORANGE};
-		border-radius: 8px;
-	}
+  > main::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.COLORS.ORANGE};
+    border-radius: 8px;
+  }
 
-	.tags {
-		display: flex;
-		justify-content: space-between;
-		flex-wrap: wrap;
-	}
+  .tags {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
 `;
 
 export const Form = styled.form`
-	max-width: 550px;
-	margin: 38px auto;
+  max-width: 550px;
+  margin: 38px auto;
 
-	> header {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
+  > header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-		margin-bottom: 36px;
+    margin-bottom: 36px;
 
-		button {
-			font-size: 20px;
-			color: ${({ theme }) => theme.COLORS.GRAY_100};
-		}
-	}
-
+    button {
+      font-size: 20px;
+      color: ${({ theme }) => theme.COLORS.GRAY_100};
+    }
+  }
 `;

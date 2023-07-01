@@ -1,45 +1,47 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 
-	background-color: ${({ theme, isNew }) => isNew ? "transparent" : theme.COLORS.BACKGROUND_900};
-	// se for novo, coloque o background transparente, caso contrário, coloque o cinza escuro
-	color: ${({ theme }) => theme.COLORS.GRAY_300};
+  background-color: ${({ theme, isNew }) =>
+    isNew ? "transparent" : theme.COLORS.BACKGROUND_900};
+  // se for novo, coloque o background transparente, caso contrário, coloque o cinza escuro
+  color: ${({ theme }) => theme.COLORS.GRAY_300};
 
-	border: ${({ theme, isNew }) => isNew ? `1px dashed ${theme.COLORS.GRAY_300}` : "none"};
+  border: ${({ theme, isNew }) =>
+    isNew ? `1px dashed ${theme.COLORS.GRAY_300}` : "none"};
 
-	margin-bottom: 8px;
-	border-radius: 10px;
-	padding-right: 16px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  padding-right: 16px;
 
-	> button {
-		border: none;
-		background: none;
-	}
+  > button {
+    border: none;
+    background: none;
+  }
 
-	.button-delete {
-		color: ${({ theme }) => theme.COLORS.RED};
-	}
+  .button-delete {
+    color: ${({ theme }) => theme.COLORS.RED};
+  }
 
-	.button-add {
-		color: ${({ theme }) => theme.COLORS.ORANGE};
-	}
+  .button-add {
+    color: ${({ theme }) => theme.COLORS.ORANGE};
+  }
 
-	> input {
-		height: 56px;
-		width: 100%;
+  > input {
+    height: 56px;
+    width: 100%;
 
-		padding: 12px;
+    padding: 12px;
 
-		color: ${({ theme }) => theme.COLORS.WHITE};
-		background: transparent;
+    color: ${({ theme }) => theme.COLORS.WHITE};
+    background: transparent;
 
-		border: none;
+    border: none;
 
-		&::placeholder {
-			color: ${({ theme }) => theme.COLORS.GRAY_300};
-		}
-	}
+    &::placeholder {
+      color: ${({ theme }) => theme.COLORS.GRAY_300};
+    }
+  }
 `;

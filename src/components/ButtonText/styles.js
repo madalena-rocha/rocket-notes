@@ -1,14 +1,15 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.button`
-	background: none;
-	color: ${({ theme, isActive }) => isActive ? theme.COLORS.ORANGE : theme.COLORS.GRAY_100};
-	// se tiver ativo, cor laranja, senão, cor cinza
+  background: none;
+  color: ${({ theme, isActive }) =>
+    isActive ? theme.COLORS.ORANGE : theme.COLORS.GRAY_100};
+  // se tiver ativo, cor laranja, senão, cor cinza
 
-	border: none;
-	font-size: 16px;
+  border: none;
+  font-size: 16px;
 
-	&:disabled {
-		opacity: 0.5;
-	}
+  &:disabled {
+    opacity: 0.5;
+  }
 `;

@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.header`
   grid-area: header;
@@ -18,39 +18,41 @@ export const Container = styled.header`
 `;
 
 export const Profile = styled(Link)`
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 
-	> img { // estilizar a img que existe dentro do componente Profile
-		width: 56px;
-		height: 56px;
-		border-radius: 50%;
-	}
+  > img {
+    // estilizar a img que existe dentro do componente Profile
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+  }
 
-	> div {
-		display: flex;
-		flex-direction: column;
-		margin-left: 16px;
-		line-height: 24px;
+  > div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+    line-height: 24px;
 
-		span { // não é necessário colocar o > por estar num nível de especificidade grande
-			font-size: 14px;
-			color: ${({ theme }) => theme.COLORS.GRAY_100};
-		}
+    span {
+      // não é necessário colocar o > por estar num nível de especificidade grande
+      font-size: 14px;
+      color: ${({ theme }) => theme.COLORS.GRAY_100};
+    }
 
-		strong {
-			font-size: 18px;
-			color: ${({ theme }) => theme.COLORS.WHITE};
-		}
-	}
+    strong {
+      font-size: 18px;
+      color: ${({ theme }) => theme.COLORS.WHITE};
+    }
+  }
 `;
 
 export const Logout = styled.button`
-	border: none;
-	background: none;
+  border: none;
+  background: none;
 
-	> svg {
-		color: ${({ theme }) => theme.COLORS.GRAY_100};
-		font-size: 36px;
-	}
+  > svg {
+    color: ${({ theme }) => theme.COLORS.GRAY_100};
+    font-size: 36px;
+  }
 `;
