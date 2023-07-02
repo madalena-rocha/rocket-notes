@@ -5,7 +5,7 @@ export const Container = styled.div`
   height: 100vh;
 
   display: grid;
-  grid-template-rows: 105px auto;
+  grid-template-rows: 10.5rem auto;
   grid-template-areas:
     "header"
     "content";
@@ -16,12 +16,12 @@ export const Container = styled.div`
   }
 
   > main::-webkit-scrollbar {
-    width: 8px;
+    width: 0.8rem;
   }
 
   > main::-webkit-scrollbar-thumb {
     background-color: ${({ theme }) => theme.COLORS.ORANGE};
-    border-radius: 8px;
+    border-radius: 0.8rem;
   }
 
   .tags {
@@ -32,18 +32,18 @@ export const Container = styled.div`
 `;
 
 export const Form = styled.form`
-  max-width: 550px;
-  margin: 38px auto;
+  max-width: 55rem;
+  margin: 3.8rem auto;
 
   > header {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    margin-bottom: 36px;
+    margin-bottom: 3.6rem;
 
     button {
-      font-size: 20px;
+      font-size: 2rem;
       color: ${({ theme }) => theme.COLORS.GRAY_100};
     }
   }

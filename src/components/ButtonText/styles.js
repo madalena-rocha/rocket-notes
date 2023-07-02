@@ -7,7 +7,7 @@ export const Container = styled.button`
   // se tiver ativo, cor laranja, senão, cor cinza
 
   border: none;
-  font-size: 16px;
+  font-size: 1.6rem;
 
   &:disabled {
     opacity: 0.5;
